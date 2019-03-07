@@ -44,8 +44,6 @@ $(document).ready( function() {
         dataType: dataType
       });
 
-
-
       $.post("https://zohovcs.requestcatcher.com/register", {tenant_id: tenant_id, org_id: org_id}).then(function(){
         alert("OkAy")
       })
