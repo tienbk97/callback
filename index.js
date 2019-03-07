@@ -1,33 +1,37 @@
 $(document).ready( function() {
 
-  function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
+  // function setCookie(cname, cvalue, exdays) {
+  //   var d = new Date();
+  //   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  //   var expires = "expires="+d.toUTCString();
+  //   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  // }
 
-  function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
+  function getStorage(cname) {
+    let obj = JSON.parse(localStorage.getItem(cname));
+    console.log("get", obj);
+    let result = null
+    const now = Date.now();
+    if (obj) {
+      var timestamp = obj.timestamp;
+      console.log(timestamp)
+      console.log(now)
+      console.log(timestamp > now)
+      if (timestamp > now) {
+        return obj.value;
       }
     }
-    return null;
+    return result
   }
 
-  function checkCookie() {
+  function checkStorage() {
 
-    org_id = getCookie("org_id")
-    tenant_id = getCookie("tenant_id")
+    org_id = getStorage("org_id")
+    user_id = getStorage("user_id")
+    tenant_id = getStorage("tenant_id")
+    agent_id = getStorage("agent_id")
 
-    if (org_id && tenant_id) {
+    if (org_id && tenant_id && user_id && agent_id) {
       $.ajax({
         type: "POST",
         url: "https://zohovcs.requestcatcher.com/register",
@@ -44,14 +48,12 @@ $(document).ready( function() {
 
       $.post("https://zohovcs.requestcatcher.com/register", {tenant_id: tenant_id, org_id: org_id}).then(function(){
         alert("OkAy")
-        window.top.close();
       })
     } else {
-      alert("yOu sTupiD, set Cookie first ~~")
-      window.top.close();
+      alert("yOu sTupiD, set storage first ~~")
     }
   }
 
-  checkCookie();
+  checkStorage();
 
 });
