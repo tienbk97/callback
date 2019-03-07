@@ -7,6 +7,16 @@ $(document).ready( function() {
   //   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   // }
 
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
   function getStorage(cname) {
     let obj = JSON.parse(localStorage.getItem(cname));
     console.log("get", obj);
@@ -52,6 +62,7 @@ $(document).ready( function() {
     }
   }
 
-  checkStorage();
+  // checkStorage();
+  console.log(getParameterByName("code"));
 
 });
