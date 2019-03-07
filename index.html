@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="index.css">
+  </head>
+  <body>
+    <div id="container_signin" class="container_signin">   
+      <!-- Heading -->
+      <div class="logo_signin"></div>
+      <p class="tenant_name" id="tenant_name"></p>
+      
+      <!-- Form -->
+      <form name="signin" action="#">
+        <!-- email input -->
+        <div class="input__block">
+           <input type="text" placeholder="Email hoặc số điện thoại" class="input" id="username"   />
+        </div>
+        <!-- password input -->
+        <div class="input__block">
+           <input type="password" placeholder="Mật khẩu" class="input" id="password"    />
+        </div>
+
+        <!-- sign in button -->
+        <button type="submit" class="signin__btn" id="signin__btn">
+          <i id="loading_signin" class="fa fa-circle-o-notch fa-spin"></i>
+          <div id="signin_sign">Đăng nhập</div>
+        </button>
+      </form>
+    </div>
+    
+    <div id="container_logout" class="container_logout">
+      <div id="loading_logout" class="loader"></div>
+      <button class="signout_btn" id="signout_btn">
+        Đăng xuất
+      </button>
+    </div>
+  </body>
+</html>
+

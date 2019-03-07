@@ -1,0 +1,123 @@
+.logo_signin {
+  background: url('vCS_logo.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;      
+  background-size: cover;
+  height: 80px;
+  width: 80px;
+  margin: 20px auto;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+}
+.tenant_name{
+  font-weight: 600;
+  font-size: 18px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.container_signin {
+  position: absolute;
+  top: 7%; 
+  max-width: 400px;
+  max-height: 400px;
+  width: 100%;
+  margin:0 auto;
+}
+.container_logout {
+  display: none;
+  max-width: 400px;
+  max-height: 100px;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto 10px;
+}
+form .input__block {
+  margin: 20px auto;
+  display: block;
+  position: relative;
+}
+form .input__block input {
+  display: block;
+  width: 90%;
+  max-width: 400px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 8px !important;
+  border: none !important;
+  background: rgba(15, 19, 42, .1);
+  color: rgba(15, 19, 42, .7);
+  padding: 0 0 0 15px !important;
+  font-size: 16px !important;
+  font-family: 'Montserrat', sans-serif;
+}
+form .input__block input:focus, form .input__block input:active {
+  outline: none;
+  border: none;
+  color: rgba(15, 19, 42, 1);
+}
+
+form .signin__btn {
+  background: #ed384d;
+  color: white;
+  display: block;
+  width: 90%;
+  max-width: 400px;
+  height: 50px;
+  border-radius: 8px !important;
+  margin: 0 auto 20px;
+  border: none !important;
+  cursor: pointer;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 10px 15px rgba(237, 56, 77, .26);
+  transition: 0.2s linear;
+}
+form .signin__btn:hover {
+  box-shadow: 0 0 0 rgba(237, 56, 77, .0);
+}
+
+.signout_btn{
+  background: #02b3e4;
+  color: white;
+  display: block;
+  width: 90%;
+  max-width: 400px;
+  height: 40px;
+  border-radius: 8px !important;
+  margin: 10px auto 10px;
+  border: none !important;
+  cursor: pointer;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 7px 10px rgba(2,179,228,.15);
+  transition: 0.2s linear;
+}
+
+.signout_btn:hover{
+  box-shadow: 0 0 0 rgba(2,179,228,.36);
+}
+
+.loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #02b3e4; /* Blue */
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  animation: spin 1s linear infinite;
+  margin: 10px auto 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
