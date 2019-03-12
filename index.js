@@ -10,12 +10,19 @@ $(document).ready( function() {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
 
-  let code = getParameterByName("code");
+  const second = 1000;
+  let distanse = 49;
+  x = setInterval(function(){
+    $("#countdown").text(`[00:${distanse}]`);
+    distanse -= 1;
+    if (distanse < 0) {
+      clearInterval(x);
+      $("#code").val("");
+    }
+  }, second)
 
-  $.post(`https://accounts.zoho.com/oauth/v2/token?code=${code}&client_id=1000.THA4BOAZMWUN48434XLJTYE8SCUMH6&client_secret=4b4115ac65ce49e949893e310387c77e6a5021ce34&redirect_uri=https://callback-zoho.herokuapp.com&grant_type=authorization_code`,
-    function(data) {
-      console.log(data);
-    })
+
+  let code = getParameterByName("code");
 
   $("#code").val(code);
 
