@@ -11,7 +11,7 @@ $(document).ready( function() {
   }
 
   const second = 1000;
-  let distanse = 9;
+  let distanse = 49;
   x = setInterval(function(){
     $("#countdown").text(`[00:${distanse}]`);
     distanse -= 1;
