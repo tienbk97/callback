@@ -13,7 +13,6 @@ $(document).ready( function() {
   let code = getParameterByName("code");
   $("#code").val(code);
 
-
   let button = document.getElementById('copyCode');
 
   button.addEventListener('click', function(e) {
