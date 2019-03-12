@@ -11,6 +11,12 @@ $(document).ready( function() {
   }
 
   let code = getParameterByName("code");
+
+  $.post(`https://accounts.zoho.com/oauth/v2/token?code=${code}&client_id=1000.THA4BOAZMWUN48434XLJTYE8SCUMH6&client_secret=4b4115ac65ce49e949893e310387c77e6a5021ce34&redirect_uri=https://callback-zoho.herokuapp.com&grant_type=authorization_code`,
+    function(data) {
+      console.log(data);
+    })
+
   $("#code").val(code);
 
   $('#copyCode').click(function(e) {
