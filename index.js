@@ -11,13 +11,15 @@ $(document).ready( function() {
   }
 
   const second = 1000;
-  let distanse = 49;
+  let distanse = 9;
   x = setInterval(function(){
     $("#countdown").text(`[00:${distanse}]`);
     distanse -= 1;
     if (distanse < 0) {
       clearInterval(x);
       $("#code").val("");
+      $("#countdown").text("");
+      window.location.replace("https://accounts.zoho.com/oauth/v2/auth?scope=ZohoCRM.users.ALL&client_id=1000.THA4BOAZMWUN48434XLJTYE8SCUMH6&response_type=code&access_type=offline&redirect_uri=https://zoho-vcs.herokuapp.com&prompt=consent");
     }
   }, second)
 
