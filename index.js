@@ -31,7 +31,7 @@ $(document).ready( function() {
   $('#copyCode').click(function(e) {
     e.preventDefault();
     document.execCommand('copy', false, document.getElementById('code').select());
-    $("#copyCode").text("Okay")
+    $("#copyCode").text("Copied!")
   })
 
 });
