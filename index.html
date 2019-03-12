@@ -5,28 +5,12 @@
     <link rel="stylesheet" type="text/css" href="index.css">
   </head>
   <body>
-    <div id="container_signin" class="container_signin">   
-      <!-- Heading -->
-      <div class="logo_signin"></div>
-      <p class="tenant_name" id="tenant_name"></p>
-      
-      <!-- Form -->
-      <form name="signin" action="#">
-        <!-- email input -->
-        <div class="input__block">
-           <input type="text" placeholder="Email hoặc số điện thoại" class="input" id="username"   />
-        </div>
-        <!-- password input -->
-        <div class="input__block">
-           <input type="password" placeholder="Mật khẩu" class="input" id="password"    />
-        </div>
-
-        <!-- sign in button -->
-        <button type="submit" class="signin__btn" id="signin__btn">
-          <i id="loading_signin" class="fa fa-circle-o-notch fa-spin"></i>
-          <div id="signin_sign">Đăng nhập</div>
-        </button>
-      </form>
+    <div class="login_tab">
+      <div class="center">
+        <div class="domain_name">Copy this to your Third party setting</div> 
+        <input id="code" type="text" name="code" readonly="readonly"/>
+        <button id="copyCode">Copy!</button>
+      </div>
     </div>
 
     <script type="text/javascript" src="index.js"></script>
