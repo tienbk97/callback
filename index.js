@@ -1,37 +1,37 @@
-$(document).ready( function() {
+require('dotenv').config();
 
-  function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-  }
+var express = require('express'),
+  	path = require('path'),
+  	bodyParser = require('body-parser'),
+  	request = require('request')
+ 
+app = express();
+app.use(bodyParser.json());
 
-  const second = 1000;
-  let distanse = 49;
-  x = setInterval(function(){
-    $("#countdown").text(`[00:${distanse}]`);
-    distanse -= 1;
-    if (distanse < 0) {
-      clearInterval(x);
-      $("#code").val("");
-      $("#countdown").text("");
-      window.location.replace("https://accounts.zoho.com/oauth/v2/auth?scope=ZohoCRM.users.ALL&client_id=1000.THA4BOAZMWUN48434XLJTYE8SCUMH6&response_type=code&access_type=offline&redirect_uri=https://zoho-vcs.herokuapp.com&prompt=consent");
-    }
-  }, second)
+const port = process.env.PORT || 3335;
+//set the port
+app.set('port', port);
 
+//tell express that we want to use the www folder
+//for our static assets
+app.use(express.static(path.join(__dirname, '/public')));
 
-  let code = getParameterByName("code");
+//CONSTANT
+const client_id = "1000.THA4BOAZMWUN48434XLJTYE8SCUMH6"
+const client_secret = "4b4115ac65ce49e949893e310387c77e6a5021ce34"
+const redirect_uri = "https://zoho-vcs.herokuapp.com"
 
-  $("#code").val(code);
+app.post('/api/code', (req, res) => {
+	const {code} = req.body
+	request.post({
+		url : `https://accounts.zoho.com/oauth/v2/token?code=${code}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=authorization_code`
+	}, (err, resp, body) => {
+		console.log(body)
+	})
+	
+});
 
-  $('#copyCode').click(function(e) {
-    e.preventDefault();
-    document.execCommand('copy', false, document.getElementById('code').select());
-    $("#copyCode").text("Copied!")
-  })
-
+// Listen for requests
+var server = app.listen(app.get('port'), function () {
+  console.log('The server is running on http://localhost:' + app.get('port'));
 });
