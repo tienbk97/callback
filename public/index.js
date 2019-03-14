@@ -18,20 +18,6 @@ $(document).ready( function() {
   const url = `https://accounts.zoho.com/oauth/v2/auth?scope=${scope}&client_id=${client_id}&response_type=code&access_type=${access_type}&redirect_uri=${redirect_uri}&prompt=consent`
 
 
-  const second = 1000;
-  let distanse = 49;
-  x = setInterval(function(){
-    $("#countdown").text(`[00:${distanse}]`);
-    distanse -= 1;
-    if (distanse < 0) {
-      clearInterval(x);
-      $("#code").val("");
-      $("#countdown").text("");
-      window.location.replace(url);
-    }
-  }, second)
-
-
   let code = getParameterByName("code");
   const body = { code: code };
    $.ajax({
