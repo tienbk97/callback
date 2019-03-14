@@ -23,6 +23,7 @@ const redirect_uri = "https://zoho-vcs.herokuapp.com"
 
 app.post('/api/code', (req, res) => {
 	const {code} = req.body
+	console.log("received: " + code)
 	request.post({
 		url : `https://accounts.zoho.com/oauth/v2/token?code=${code}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=authorization_code`
 	}, (err, resp, body) => {
