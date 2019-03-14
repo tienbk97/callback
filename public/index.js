@@ -30,11 +30,10 @@ $(document).ready( function() {
             $("#code").val(data.refresh_token);
           } else {
             $("#code").val(data.message);
-            clearInterval(x);
             setTimeout(()=>{
-                window.location.replace(url);
-              },
-              2000)
+              window.location.replace(url);
+            },
+            5000)
           }
         },
         dataType: "json",
