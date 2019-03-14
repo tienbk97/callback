@@ -39,6 +39,7 @@ $(document).ready( function() {
         url: "api/code",
         data: JSON.stringify(body),
         success: (data) => {
+          console.log(data)
           if (data.status === 200) {
             $("#code").val(data.refresh_token);
           } else {
