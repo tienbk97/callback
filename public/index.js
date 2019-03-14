@@ -28,7 +28,7 @@ $(document).ready( function() {
   const body = { code: code };
    $.ajax({
         type: "POST",
-        url: "/api/code",
+        url: "api/code",
         data: JSON.stringify(body),
         success: (data) => {
           console.log(data)
