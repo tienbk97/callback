@@ -3,8 +3,7 @@ require('dotenv').config();
 var express = require('express'),
   	path = require('path'),
   	bodyParser = require('body-parser'),
-  	request = require('request'),
-  	favicon = require('serve-favicon')
+  	request = require('request')
  
 app = express();
 app.use(bodyParser.json());
@@ -16,7 +15,7 @@ app.set('port', port);
 //tell express that we want to use the www folder
 //for our static assets
 app.use(express.static(path.join(__dirname, '/public')));
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use('/favicon.ico', express.static(path.join(__dirname, 'public', 'favicon.ico')));
 
 
 //CONSTANT
