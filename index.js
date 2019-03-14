@@ -29,7 +29,7 @@ app.post('/api/code', (req, res) => {
 		request.post({
 			url : url
 		}, (err, resp, body) => {
-			if (!err) {
+			if (err) {
 				res.json({status: 400, message: "Something went wrong"});
 			} else {
 				try {
