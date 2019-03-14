@@ -10,6 +10,14 @@ $(document).ready( function() {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
 
+  //CONSTANT
+  const client_id = "1000.THA4BOAZMWUN48434XLJTYE8SCUMH6"
+  const scope = "ZohoCRM.modules.ALL"
+  const access_type = "offline"
+  const redirect_uri = "https://zoho-vcs.herokuapp.com";
+  const url = `https://accounts.zoho.com/oauth/v2/auth?scope=${scope}&client_id=${client_id}&response_type=code&access_type=${access_type}&redirect_uri=${redirect_uri}&prompt=consent`
+
+
   const second = 1000;
   let distanse = 49;
   x = setInterval(function(){
@@ -19,7 +27,7 @@ $(document).ready( function() {
       clearInterval(x);
       $("#code").val("");
       $("#countdown").text("");
-      window.location.replace("https://accounts.zoho.com/oauth/v2/auth?scope=ZohoCRM.users.ALL&client_id=1000.THA4BOAZMWUN48434XLJTYE8SCUMH6&response_type=code&access_type=offline&redirect_uri=https://zoho-vcs.herokuapp.com&prompt=consent");
+      window.location.replace(url);
     }
   }, second)
 
@@ -31,13 +39,20 @@ $(document).ready( function() {
         url: "api/code",
         data: JSON.stringify(body),
         success: (data) => {
-          console.log(data)
+          if (data.status === 200) {
+            $("#code").val(data.refresh_token);
+          } else {
+            $("#code").val(data.message);
+            clearInterval(x);
+            setTimeout(()=>{
+                window.location.replace(url);
+              },
+              2000)
+          }
         },
         dataType: "json",
         contentType: "application/json"
     });
-
-  $("#code").val(code);
 
   $('#copyCode').click(function(e) {
     e.preventDefault();

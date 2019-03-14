@@ -25,12 +25,29 @@ app.post('/api/code', (req, res) => {
 	const {code} = req.body
 	console.log("received: " + code)
 	const url = `https://accounts.zoho.com/oauth/v2/token?code=${code}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=authorization_code`
-	console.log(url)
-	request.post({
-		url : url
-	}, (err, resp, body) => {
-		console.log(body)
-	})
+	if (code) {
+		request.post({
+			url : url
+		}, (err, resp, body) => {
+			if (!err) {
+				res.json({status: 400, message: "Something went wrong"});
+			} else {
+				try {
+					tokens = JSON.parse(body);
+					if (tokens.refresh_token) {
+						res.json({status: 200, refresh_token: tokens.refresh_token})
+					} else {
+						res.json({status: 400, message: "Something went wrong"});
+					}
+				} catch (e) {
+					console.log(e)
+					res.json({status: 400, message: "Something went wrong"});
+				}
+			}
+		})
+	} else {
+		res.json({status: 400, message: "You have no code"});
+	}
 	
 });
 
